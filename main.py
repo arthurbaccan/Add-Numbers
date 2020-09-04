@@ -1,5 +1,15 @@
-# This is a sample Python script.
-from termcolor import cprint
+# This is a Python script.
+from colored import fg, attr
+
+# set a color reset using colored library
+reset_color = attr("reset")
+# some variables to make coding colored text easier, using colored library
+yellow_text = fg(3)
+green_text = fg(2)
+red_text = fg(1)
+blue_text = fg(4)
+cyan_text = fg(6)
+sea_green = fg(78)
 
 
 # Function for addition of unlimited numbers
@@ -17,7 +27,7 @@ def add(*nums):
         # when the first for loop finished being executed
         for c in range(count):
             result += float(num[c])
-    cprint(f"The result of the addition is {result}", "green")
+    print(f"{green_text}The result of the addition is: {sea_green}{result}{reset_color}")
 
 
 # function for make multiplications of unlimited numbers
@@ -43,7 +53,7 @@ def multiply(*nums):
             else:
                 result = result * float(num2[c + 1])
     # print colored text
-    cprint(f"The result of the multiplication is {result}", 'green')
+    print(f"{green_text}The result of the multiplication is: {sea_green}{result}{reset_color}")
 
 
 # function for getting number inputs from the user
@@ -64,8 +74,8 @@ def get_number_input():
                 float(input_number)
             # if a there is ValueError error, the user typed something else than numbers...
             except ValueError:
-                cprint("Invalid number or command\nThe answer didn't affect your calculation ", "red")
-                cprint("-=" * 20, "blue")
+                print(f"{red_text}Invalid number or command\nThe answer didn't affect your calculation ")
+                print(f"{blue_text}-={reset_color}" * 20, )
             # if everything goes ok, it adds the user input to a list called "List_of_Input_numbers"
             else:
                 List_of_Input_numbers.append(input_number)
@@ -75,8 +85,7 @@ def get_number_input():
 
 if __name__ == '__main__':
     # print a colored message
-    cprint("type numbers to make calculations with them", 'grey')
-    cprint("Type '=' to show the addition and multiplication results ", 'yellow')
+    print(f"{yellow_text}Type '=' to show the addition and multiplication of the numbers you typed{reset_color} ")
     # call the function for getting unlimited number inputs
     List_of_Input_numbers = get_number_input()
     # call the function to make an addition with the numbers the user input
