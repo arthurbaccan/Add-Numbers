@@ -75,7 +75,7 @@ def get_number_input():
 
 if __name__ == '__main__':
     # print a colored message
-    print("type numbers to make calculations with them")
+    cprint("type numbers to make calculations with them", 'grey')
     cprint("Type '=' to show the addition and multiplication results ", 'yellow')
     # call the function for getting unlimited number inputs
     List_of_Input_numbers = get_number_input()
