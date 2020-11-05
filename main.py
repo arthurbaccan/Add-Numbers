@@ -15,7 +15,7 @@ gray_text = fg(7)
 
 # Function for addition of unlimited numbers
 def add(nums: list):
-    # assignment of result variable, so it can be used later
+    # assignment of result variable that is going to be used later.
     result = 0
     # stores the length of "nums" list in a variable called count
     count = len(nums)
@@ -41,7 +41,7 @@ def subtract(minuends: list, subtrahends: list):
     # adds each number in "minuends" list
     for c in range(count_subtrahends):
         all_subtrahends += float(subtrahends[c])
-    # subtracts the number sets and store the result of the subtraction in a variable called "result".
+    # subtracts the numbers and store the result of the subtraction in a variable called "result".
     result = all_minuends - all_subtrahends
     # returns the "result" variable
     return result
@@ -55,15 +55,36 @@ def multiply(nums: list):
     first_time = True
     # stores the length of "nums" list in a variable called count
     count = len(nums)
-    # multiply each number in the "nums" list(that has the inputs from the user)
+    # multiplies each number in the "nums" list(that has the inputs from the user)
     for c in range(count - 1):
-        # check if first_time variable is true
+        # checks if first_time variable is true
         if first_time:
             result = float(nums[c]) * float(nums[c + 1])
             first_time = False
         else:
             result = result * float(nums[c + 1])
-    # print colored text
+    # returns the "result" variable
+    return result
+
+
+# function for division of unlimited numbers
+def division(dividends: list, divisors: list):
+    # assignment of the variables that are going to be used later
+    sum_dividends = 0
+    sum_divisors = 0
+    # stores the length of "dividends" list in a variable called "count_dividends"
+    count_dividends = len(dividends)
+    # stores the length of "divisors" list in a variable called "count_divisors"
+    count_divisors = len(divisors)
+    # adds each number from the "dividends" list(that has the inputs from the user)
+    for c in range(count_dividends):
+        sum_dividends += float(dividends[c])
+    # adds each number from the "divisors" list(that has the inputs from the user)
+    for c in range(count_divisors):
+        sum_divisors += float(divisors[c])
+    # divides the numbers and store the result of the division in a variable called "result"
+    result = sum_dividends / sum_divisors
+    # returns the "result" variable
     return result
 
 
@@ -102,56 +123,73 @@ if __name__ == '__main__':
 Type an command(from the command list below) to chose an mode,
 and start doing calculations with unlimited numbers. 
 Don't forget to press "enter" after you type a number.
-When you finish typing all of your numbers, type "=" to show the results''')
+When you finish typing the first set of numbers, enter "=" to type the second set of numbers and when you finish,
+enter "=" to show the final result''')
     print('''Subtractions works this way: The first set of numbers you enter(minuends) will be subtracted from the
 second set of numbers you type(subtrahends). Example: First set of numbers the user entered(minuends): 10,15,20,25.
 Second set of numbers the user entered(subtrahends): 5,35. The calculation that is going to be made:
-10 + 15 + 20 + 25 = 70 and 5 + 35 = 40. Final result = 70 - 40 = 30 ''')
+10 + 15 + 20 + 25 = 70 and 5 + 35 = 40. Final result = 70 - 40 = 30. The division works the same way, except that
+the final numbers are divided, instead of subtracted''')
     print(f'''{yellow_text}Commands:
 Addition[+]
 Multiplication[x]
 Subtraction[-]
-Press "enter" after you type a number and type "=" after you finish typing numbers{reset_color}''')
+Division[d]
+When you finish typing the first set of numbers, enter "=" to type the second set of numbers and then,
+enter "=" again to show the final result{reset_color}''')
     # print a blank line
     print()
 
     # makes a loop that never ends
     while True:
-        # gets an user input
-        command = input("Type an command(+, -, x): ")
+        # gets a command input
+        command = input("Type an command(+, -, x, d): ")
         # checks if the user typed any of the specified commands, and if it did, the code below is executed
         # the \ is used to break a line, while complementing the code below, it's just for aesthetics
         if command == "+" or command == "addition" or command == "Addition" or command == "[+]" \
                 or command == "Addition[+]" or command == "addition[+]" or command == "plus":
-            # call the function that gets unlimited number inputs and assign them to a variable
+            # Gets a list of the numbers that the user typed and assign them to a variable
             list_of_Input_numbers = get_number_input("Type a number to add it: ")
             # call the function that adds the numbers the user input and returns its values to a variable
             addition_result = add(list_of_Input_numbers)
             print(f"{green_text}The result of the addition is: {sea_green}{addition_result}{reset_color}")
-        # if the statement above(the "if statement" at line 117") is not executed it checks if the user typed
+        # if the statement above(the "if statement" at line 149") is not executed it checks if the user typed
         # any of the specified commands, and the code below is executed or not
         # the \ is used to break a line, while complementing the code below, it's just for aesthetics
         elif command == "-" or command == "subtraction" or command == "Subtraction" or command == "minus" \
                 or command == "[-]" or command == "subtraction[-]" or command == "Subtraction[-]":
             # print a blank line
             print()
-            # call the function that gets unlimited number inputs and assign them to a variable
+            # Gets a list of the numbers that the user typed and assign them to a variable
             list_of_Input_numbers_minuends = get_number_input("Type the minuend(s) to be subtracted: ")
             list_of_Input_numbers_subtrahends = get_number_input("Type the subtrahend(s): ")
-            # call the function that subtracts the numbers the user input and returns its values to a variable
+            # call the function that subtracts the numbers the user typed and returns the result to a variable
             subtraction_result = subtract(list_of_Input_numbers_minuends, list_of_Input_numbers_subtrahends)
             print(f"{green_text}The result of the subtraction is: {sea_green}{subtraction_result}{reset_color}")
-        # if the statement above(the "elif statement" at line 126") is not executed it checks if the user typed
+        # if the statement above(the "elif statement" at line 159") is not executed it checks if the user typed
         # any of the specified commands, and the code below is executed or not
         # the \ is used to break a line, while complementing the code below, it's just for aesthetics
         elif command == "x" or command == "[x]" or command == "Multiplication" or command == "times" \
                 or command == "multiplication[x]" or command == "Multiplication[x]":
-            # call the function that multiplies the numbers the user input and returns its values to a variable
+            # Gets a list of the numbers that the user typed and assign them to a variable
             list_of_Input_numbers = get_number_input("Type a number to multiply it: ")
-            # call the function that multiplies the numbers the user input and returns its values to a variable
+            # call the function that multiplies the numbers the user typed and returns the result to a variable
             multiplication_result = multiply(list_of_Input_numbers)
             # print colored text
             print(f"{green_text}The result of the multiplication is: {sea_green}{multiplication_result}{reset_color}")
+        # if the statement above(the "elif statement" at line 172") is not executed it checks if the user typed
+        # any of the specified commands, and the code below is executed or not
+        # the \ is used to break a line, while complementing the code below, it's just for aesthetics
+        elif command == "d" or command == "/" or command == "D" or command == "[d]" or command == "division" \
+                or command == "division[d]" or command == "Division[d]":
+            # Gets a list of the numbers that the user typed and assign them to a variable
+            list_of_Input_dividends = get_number_input("Type the dividend(s)")
+            list_of_Input_divisors = get_number_input("Type the divisor(s)")
+            # call the function that divides the numbers the user typed and returns the result to a variable
+            division_result = division(list_of_Input_dividends, list_of_Input_divisors)
+            # print colored text
+            print(f"{green_text}The result of the division is {sea_green}{division_result}{reset_color}")
+
         # print blank lines
         print()
         print()
